@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approval History</title>
+    <link rel="stylesheet" href="styles.css">
+	<script src="More-Tab.js"></script>
+	<script src="More-Tab2.js"></script>
+	<script src="popup-window.js"></script>
+	<script src="popup-window2.js"></script>
+	<script src="popup-window3.js"></script>
+</head>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+
+        function openPopup2(imageSrc) {
+            document.getElementById('popup-main').style.display = 'none'; // Hide main popup content
+            document.getElementById('popup-image-view').style.display = 'block'; // Show image view popup content
+            document.getElementById('popup-image').src = imageSrc; // Set image source
+        }
+
+        function closePopup() {
+			document.getElementById('popup').style.display = 'none'; // Hide the main popup container
+			document.getElementById('popup-main').style.display = 'block'; // Reset the main popup content for the next time
+			document.getElementById('popup-image-view').style.display = 'none'; // Ensure the image view popup is hidden
+        }
+
+        function goBack() {
+            document.getElementById('popup-image-view').style.display = 'none'; // Hide image view content
+            document.getElementById('popup-main').style.display = 'block'; // Show main popup content again
+        }
+    </script>
+	
+	
+
+	
+	
+	
+	
+
+<body>
+
+    <!-- Navigation -->
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="Farm Cove Horizontal Logo.png" alt="Farm Cove Logo"> <!-- Placeholder for the logo -->
+        </div>
+        <div class="nav-icons">
+            <img src="magnifying glass.png" alt="Search" class="icon">
+            <img src="bell.png" alt="Notifications" class="icon">
+            <img src="avatar.png" alt="User" class="icon">
+        </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <div class="tabs">
+        <a href="index.html">Home</a>
+        <a href="approvals.html" class="active">Approvals</a>
+        <a href="tasks.html">BFI</a>
+
+		<a href="logging.html">Logging</a>
+		<a href="reconciliation.html">Reconciliation</a>
+		<a href="crew-management.html">Crew Management</a>
+
+        <a href="schedule-payment.html">Schedule Payment</a>
+        <a href="pay-upcoming.html">Pay</a>
+				<a href="compliance.html">Compliance</a>
+        <a href="reporting.html">Reports</a>
+		
+				<!-- More Button -->
+		<div class="more">
+			More
+			<div class="more-dropdown"></div>
+		</div>
+    </div>
+
+    <!-- Approvals Sub Navigation -->
+    <div class="tabs2">
+        <a href="approvals.html"">Query Responses</a>
+        <a href="approval-payroll-invoices.html">Payroll Invoices</a>
+		<a href="approval-expense-account.html" class="active">Personal Expense Reimbursement Claim </a>
+		<a href="approval-history.html">Approval History</a>
+		
+				<!-- More Button -->
+		<div class="more-tabs2">
+			More
+			<div class="more-dropdown-tabs2"></div> 
+		</div>
+		
+    </div>
+
+    <!-- Page Header -->
+    <div class="header">
+        <h1>Personal Account Reimbursement Claim</h1>
+    </div>
+
+    <!-- Table for Transactions -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Transaction </br> Group Ref.</th>
+                    <th>Date</th>
+                    <th>Related Record Description</th>
+                    <th>Value</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Personal Expense Reimbursement Claim - TG-010</td>
+                    <td>04/03/24</td>
+                    <td>-</td>
+                    <td>£200.00</td>
+					<td><button class="button1" onclick="openPopup()">View Group Transactions</button></td>
+                </tr>
+				
+                <tr class="grey-row">
+                    <td>Personal Expense Reimbursement Claim - TG-012</td>
+                    <td>04/03/24</td>
+                    <td>-</td>
+                    <td>£45.50</td>
+                    <td><button class="button2" disabled>View Group Transactions</button></td>
+                </tr>
+				
+                <tr class="grey-row">
+                    <td>Personal Expense Reimbursement Claim - TG-013</td>
+                    <td>04/03/24</td>
+                    <td>-</td>
+                    <td>£120.00</td>
+                    <td><button class="button2" disabled>View Group Transactions</button></td>
+                </tr>
+				
+                <tr class="grey-row">
+                    <td>Personal Expense Reimbursement Claim - TG-014</td>
+                    <td>04/03/24</td>
+                    <td>-</td>
+                    <td>£75.00</td>
+                    <td><button class="button2" disabled>View Group Transactions</button></td>
+                </tr>
+				
+                <tr class="grey-row">
+                    <td>Personal Expense Reimbursement Claim - TG-015</td>
+                    <td>04/03/24</td>
+                    <td>-</td>
+                    <td>£200.00</td>
+                    <td><button class="button2" disabled>View Group Transactions</button></td>
+                </tr>
+				
+            </tbody>
+        </table>
+    </div>
+
+<!-- Popup Window -->
+<div id="popup" class="popup" style="display:none">
+
+    <!-- Main content for Approve/Reject -->
+    <div class="popup-content" id="popup-main">
+        <button class="close-btn1" onclick="closePopup()">X</button>
+		
+        <h3>Transaction Details</h3>
+		</br>
+        
+        <!-- Scrollable Table -->
+        <div class="popup-table-container" style="max-height: 300px; overflow-y: auto;">
+            <table class="transaction-table">
+                <thead>
+                    <tr>
+                        <th>Trans.</th>
+                        <th>Submitter</th>
+                        <th>Value</th>
+                        <th>Compliance Notes</th>
+                        <th>Submitter Justification</th>
+                        <th>Billing Entity</th>
+                        <th>View Document</th>
+                    </tr>
+                </thead>
+                <tbody>
+				
+                    <tr>
+                        <td>TRX-00001</td>
+                        <td>John, Production Assistant</td>
+                        <td>£10.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>RONTEC COLNBROOK BY PASS LTD</td>
+                        <td><button class="button1" onclick="openPopup2('expense1.png')">View</button></td>
+                    </tr>
+					
+                    <tr class="grey-row">
+                        <td>TRX-00002</td>
+                        <td>John, Production Assistant</td>
+                        <td>£40.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>BYRON ST CONNECT LTD</td>
+                        <td><button class="button2" disabled>View</a></td>
+                    </tr>
+					
+					<tr class="grey-row">
+                        <td>TRX-00003</td>
+                        <td>John, Production Assistant</td>
+                        <td>£50.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>BYRON ST CONNECT LTD</td>
+                        <td><button class="button2" disabled>View</a></td>
+                    </tr>
+					
+					<tr class="grey-row">
+                        <td>TRX-00004</td>
+                        <td>John, Production Assistant</td>
+                        <td>£15.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>PEPES LTD</td>
+                        <td><button class="button2" disabled>View</a></td>
+                    </tr>
+					
+					<tr class="grey-row">
+                        <td>TRX-00005</td>
+                        <td>John, Production Assistant</td>
+                        <td>£85.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>UNIQUE POT LIMITED</td>
+                        <td><button class="button2" disabled>View</a></td>
+                    </tr>
+					
+                </tbody>
+            </table>
+        </div>
+		
+		
+        <div class="popup-buttons">
+            <button onclick="approveDocument()">Approve</button>
+            <button onclick="queryDocument()">Query</button>
+            <button onclick="rejectDocument()">Reject</button>
+        </div>
+    </div>
+		
+    <!-- Image View Popup -->
+    <div class="popup-content" id="popup-image-view" style="display: none;">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: relative; margin-bottom: 20px;">
+    <button style="background-color: #32B8CD; color: white; border: none; cursor: pointer; padding: 5px 10px; border-radius: 4px; position: absolute; top: 0px; left: 4px; transition: background-color 0.3s, color 0.3s;" 
+        onmouseover="this.style.backgroundColor='white'; this.style.color='#32B8CD';"
+        onmouseout="this.style.backgroundColor='#32B8CD'; this.style.color='white';"
+        onclick="goBack()">&lt; Back
+    </button>
+    
+    <button style="background-color: #32B8CD; color: white; border: none; cursor: pointer; padding: 5px 10px; border-radius: 4px; position: absolute; top: 0px; right: 4px; transition: background-color 0.3s, color 0.3s;" 
+        onmouseover="this.style.backgroundColor='white'; this.style.color='#32B8CD';"
+        onmouseout="this.style.backgroundColor='#32B8CD'; this.style.color='white';"
+        onclick="closePopup()">X
+    </button>
+</div>
+
+<img id="popup-image" src="INV-118.png" alt="Document Image" style="max-width: 100%; max-height: 500px; margin-top: 35px;"> <!-- Adjusted margin here -->
+
+    </div>
+
+		<!-- Approval/Rejection Message Content -->
+		<div class="popup-content approval-message" id="approval-message" style="display: none;">
+			<p class="message-text">Message goes here</p>
+			<button class="ok-btn" onclick="closePopup()">OK</button>
+		</div>
+
+		<!-- Query Input Content -->
+		<div class="popup-content query-popup" id="query-popup" style="display: none;">
+			<button class="close-btn1" onclick="closePopup()">X</button>
+			<h3>Submit Query</h3>
+			<textarea placeholder="Enter your query here..."></textarea>
+			<div class="popup-buttons">
+				<button onclick="submitQuery()">Submit Query</button>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

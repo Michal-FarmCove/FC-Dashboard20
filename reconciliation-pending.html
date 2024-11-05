@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconciliation</title>
+    <link rel="stylesheet" href="styles.css">
+	<script src="More-Tab.js"></script>
+	<script src="More-Tab2.js"></script>
+	<script src="popup-window.js"></script>
+	<script src="popup-window2.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="Farm Cove Horizontal Logo.png" alt="Farm Cove Logo"> <!-- Placeholder for the logo -->
+        </div>
+        <div class="nav-icons">
+            <img src="magnifying glass.png" alt="Search" class="icon">
+            <img src="bell.png" alt="Notifications" class="icon">
+            <img src="avatar.png" alt="User" class="icon">
+        </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <div class="tabs">
+        <a href="index.html">Home</a>
+        <a href="approvals.html">Approvals</a>
+        <a href="tasks.html">BFI</a>
+
+		<a href="logging.html">Logging</a>
+		<a href="reconciliation.html" class="active">Reconciliation</a>
+		<a href="crew-management.html">Crew Management</a>
+
+        <a href="schedule-payment.html">Schedule Payment</a>
+        <a href="pay-upcoming.html">Pay</a>
+		<a href="compliance.html">Compliance</a>
+        <a href="reporting.html">Reports</a>
+		<!-- More Button -->
+		<div class="more">
+			More
+			<div class="more-dropdown"></div>
+		</div>
+    </div>
+
+
+    <!-- Approvals Sub Navigation -->
+    <div class="tabs2">
+        <a href="reconciliation.html">Reconciled</a>
+		<a href="reconciliation-pending.html" class="active">Pending</a>
+		<a href="reconciliation-awaiting.html">Requested</a>
+		
+				<!-- More Button -->
+		<div class="more-tabs2">
+			More
+			<div class="more-dropdown-tabs2"></div> 
+		</div>
+		
+    </div>
+
+
+    <!-- Page Header -->
+    <div class="header">
+        <h1>Reconciliation</h1>
+    </div>
+
+    <!-- Table for Reconciliation -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Payment Date</th>
+                    <th>Description</th>
+                    <th>Payment Type</th>
+                    <th>Account</th>
+                    <th>Person Responsible</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                    <th>Reconciled</th>
+                    <th>Invoice/Receipt Link</th>
+                    <th>Request Document</th>
+                </tr>
+            </thead>
+			
+            <tbody>
+				<tr>
+					<td>15/10/2024</td>
+					<td>Invoice 3440 - Transport</td>
+					<td>Bank Account</td>
+					<td>Lloyds Business</td>
+					<td>John Doe</td>
+					<td><span class="status-pending">Pending</span></td>
+					<td>£1,200.00</td>
+					<td><input type="checkbox" disabled></td>
+					<td>Missing</td>
+					<td><button class="button1" onclick="openRequestPopup()">Request Receipt</button></td>
+				</tr>
+				
+				<tr>
+					<td>15/10/2024</td>
+					<td>Invoice 3441 - Transport</td>
+					<td>Bank Account</td>
+					<td>HSBC Card</td>
+					<td>Sarah Johnson</td>
+					<td><span class="status-pending">Pending</span></td>
+					<td>£80.00</td>
+					<td><input type="checkbox" disabled></td>
+					<td>Missing</td>
+					<td><button class="button1" onclick="openRequestPopup()" >Request Receipt</button></td>
+				</tr>
+				
+				<tr>
+					<td>15/10/2024</td>
+					<td>Invoice 3442 - Fuel</td>
+					<td>Bank Account</td>
+					<td>Lloyds Business</td>
+					<td>Lisa Brown</td>
+					<td><span class="status-pending">Pending</span></td>
+					<td>£540.00</td>
+					<td><input type="checkbox" disabled></td>
+					<td>Missing</td>
+					<td><button class="button1" onclick="openRequestPopup()" >Request Receipt</button></td>
+				</tr>
+				
+				<tr>
+					<td>15/10/2024</td>
+					<td>Invoice 3443 - Props</td>
+					<td>Bank Account</td>
+					<td>NatWest Business</td>
+					<td>Henry McCol</td>
+					<td><span class="status-pending">Pending</span></td>
+					<td>£320.00</td>
+					<td><input type="checkbox" disabled></td>
+					<td>Missing</td>
+					<td><button class="button1" onclick="openRequestPopup()" >Request Receipt</button></td>
+				</tr>
+				
+				<tr>
+					<td>19/10/2024</td>
+					<td>Invoice 3444 - Catering </td>
+					<td>Bank Account</td>
+					<td>Barclays Card</td>
+					<td>David Green</td>
+					<td><span class="status-pending">Pending</span></td>
+					<td>£1,000.00</td>
+					<td><input type="checkbox" disabled></td>
+					<td>Missing</td>
+					<td><button class="button1" onclick="openRequestPopup()" >Request Receipt</button></td>
+				</tr>
+				<tr class="header2">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><strong>Total:</strong></td>
+					<td>£3,140.00</td>
+					<td><strong>VAT Est:</strong></td>
+					<td>£523.33</td>
+					<td></td>
+				</tr>
+            </tbody>
+        </table>
+    </div>
+
+<!-- Popup Window for Request Receipt -->
+<div id="request-popup2" class="popup">
+    <div class="popup-inner">
+        <button class="close-btn1" onclick="closePopup()">X</button>
+        <h3>Request Receipt</h3>
+		</br>
+        <p>This process will send a message to the person responsible for this account, requesting the supporting document for this payment. Click 'Send' to continue.</p>
+		<div class="popup-buttons">
+            <button class="button1" onclick="sendRequest()">Send</button>
+        </div>
+    </div>
+
+    <!-- Request Sent Confirmation -->
+    <div class="popup-inner approval-message" id="request-sent-message" style="display: none;">
+        <p class="message-text">Request has been sent</p>
+        <button class="ok-btn" onclick="closePopup()">OK</button>
+    </div>
+</div>
+
+
+<script>
+// Function to open the "Request Receipt" popup
+function openRequestPopup() {
+    // Ensure the 'Send' popup content is visible
+    document.querySelector('#request-popup2 .popup-inner').style.display = 'block';
+    
+    // Ensure the 'Request sent' message is hidden
+    document.getElementById('request-sent-message').style.display = 'none';
+    
+    // Display the popup
+    document.getElementById('request-popup2').style.display = 'flex';
+}
+
+// Function to close any open popups
+function closePopup() {
+    document.getElementById('request-popup2').style.display = 'none';
+}
+
+// Function to handle the "Send" button click for the request popup
+function sendRequest() {
+    document.querySelector('#request-popup2 .popup-inner').style.display = 'none';
+    document.getElementById('request-sent-message').style.display = 'block';
+}
+
+// Function to open the "Receipt" popup and show the receipt image
+function openReceiptPopup(imageSrc) {
+    document.getElementById('receipt-image').src = imageSrc; // Set the image source
+    document.getElementById('receipt-popup').style.display = 'flex';
+}
+
+// Function to close the receipt popup
+function closeReceiptPopup() {
+    document.getElementById('receipt-popup').style.display = 'none';
+}
+
+</script>
+
+</body>
+</html>

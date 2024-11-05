@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crew Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="More-Tab.js"></script>
+    <script src="More-Tab2.js"></script>
+    <script src="popup-window.js"></script>
+    <script src="popup-window2.js"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="Farm Cove Horizontal Logo.png" alt="Farm Cove Logo"> <!-- Placeholder for the logo -->
+        </div>
+        <div class="nav-icons">
+            <img src="magnifying glass.png" alt="Search" class="icon">
+            <img src="bell.png" alt="Notifications" class="icon">
+            <img src="avatar.png" alt="User" class="icon">
+        </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <div class="tabs">
+        <a href="index.html">Home</a>
+        <a href="approvals.html">Approvals</a>
+        <a href="tasks.html">BFI</a>
+        <a href="logging.html">Logging</a>
+        <a href="reconciliation.html">Reconciliation</a>
+        <a href="crew-management.html" class="active">Crew Management</a>
+        <a href="schedule-payment.html">Schedule Payment</a>
+        <a href="pay-upcoming.html">Pay</a>
+				<a href="compliance.html">Compliance</a>
+        <a href="reporting.html">Reports</a>
+        <div class="more">
+            More
+            <div class="more-dropdown"></div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="header">
+        <h1>Crew Management</h1>
+    </div>
+
+    <!-- Table for Crew and HODs Management -->
+    <div class="table-container" id="crew-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Type</th>
+                    <th>Department</th>
+                    <th>Contact Information</th>
+                    <th>Engagement</th>
+                    <th>Invoices</th>
+                    <th>Documents</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Smith</td>
+                    <td>Gaffer</td>
+                    <td>HOD</td>
+                    <td>Electrical & Lighting</td>
+                    <td><button class="button1" onclick="showContactDetails('John Smith', 'Lighting Head', 'Company X', '42 Bramble Lane, Westbridge, London, England, United Kingdom')">Contact Info</button></td>
+                    <td><button class="button1" onclick="showEngagementDetails('John Smith', 'Gaffer')">Engagement</button></td>
+                    <td><button class="button1" onclick="openInvoicePopup('John Smith')">Invoices</button></td>
+                    <td><button class="button1" onclick="openDocumentPopup('John Smith')">Documents</button></td>
+                </tr>
+                <tr class="grey-row">
+                    <td>Jimmy James</td>
+                    <td>Spot Boy</td>
+                    <td>Overseas Junior</td>
+                    <td>Production Management</td>
+                    <td><button class="button2" onclick="showContactDetails('Jimmy James', 'Production Management', 'Company Y', '30 Kensington High Street, London')" disabled>Contact Info</button></td>
+                    <td><button class="button2" onclick="showEngagementDetails('Jimmy James', 'Spot Boy')" disabled>Engagement</button></td>
+                    <td><button class="button2" onclick="openInvoicePopup('Jimmy James')" disabled>Invoices</button></td>
+                    <td><button class="button2" onclick="openDocumentPopup('Jimmy James')" disabled>Documents</button></td>
+                </tr>
+				<tr class="grey-row">
+                    <td>Alice Brown</td>
+                    <td>Camera Operator</td>
+                    <td>HOD</td>
+                    <td>Cinematography</td>
+                    <td><button class="button2" onclick="showContactDetails('Alice Brown', 'Camera Operator')" disabled>Contact Info</button></td>
+                    <td><button class="button2" onclick="showEngagementDetails('Alice Brown', 'Camera Operator')" disabled>Engagement</button></td>
+                    <td><button class="button2" onclick="openInvoicePopup('Alice Brown')" disabled>Invoices</button></td>
+                    <td><button class="button2" onclick="openDocumentPopup('Alice Brown')" disabled>Documents</button></td>
+                </tr>
+				<tr class="grey-row">
+                    <td>Michael Lee</td>
+                    <td>Production Manager</td>
+                    <td>Management</td>
+                    <td>Production</td>
+                    <td><button class="button2" onclick="showContactDetails('Michael Lee', 'Production Manager')" disabled>Contact Info</button></td>
+                    <td><button class="button2" onclick="showEngagementDetails('Michael Lee', 'Production Manager')" disabled>Engagement</button></td>
+                    <td><button class="button2" onclick="openInvoicePopup('Michael Lee')" disabled>Invoices</button></td>
+                    <td><button class="button2" onclick="openDocumentPopup('Michael Lee')" disabled>Documents</button></td>
+                </tr>
+				<tr class="grey-row">
+                    <td>Sarah Wilson</td>
+                    <td>Sound Technician</td>
+                    <td>HOD</td>
+                    <td>Sound & Audio</td>
+                    <td><button class="button2" onclick="showContactDetails('Sarah Wilson', 'Sound Technician')" disabled>Contact Info</button></td>
+                    <td><button class="button2" onclick="showEngagementDetails('Sarah Wilson', 'Sound Technician')" disabled>Engagement</button></td>
+                    <td><button class="button2" onclick="openInvoicePopup('Sarah Wilson')" disabled>Invoices</button></td>
+                    <td><button class="button2" onclick="openDocumentPopup('Sarah Wilson')" disabled>Documents</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Contact Details Section -->
+    <div id="contact-details" style="display:none;">
+        <button class="button1" onclick="goBackToTable()" style="margin-bottom: 35px; margin-left: 25px;">&lt; Back</button>
+        <h3 style="margin-left: 25px; margin-right: 25px;">Contact Details for <span id="contact-name"></span></h3>
+        <div class="table-container">
+            <h2 style="margin-left: 7px;">Account Information</h2>
+			</br>
+            <table>
+                <tr>
+                    <td><strong>Account Owner:</strong></td>
+                    <td>Farm Cove</td>
+                    <td><strong>Limited Company Name:</strong></td>
+                    <td id="company-name">Company X</td>
+                </tr>
+                <tr>
+                    <td><strong>Account Name:</strong></td>
+                    <td id="contact-name">-</td>
+                    <td><strong>Mobile:</strong></td>
+                    <td>1234567890</td>
+                </tr>
+				<tr>
+                    <td><strong>Title:</strong></td>
+                    <td id="role"></td>
+                    <td><strong>Phone:</strong></td>
+                    <td>1234567890</td>
+                </tr>
+                <tr>
+                    <td><strong>Primary Designation (Role):</strong></td>
+                    <td>Gaffer</td>
+                    <td><strong>Assistant Phone:</strong></td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td><strong>Email:</strong></td>
+					<td style="color: #32B8CD; text-decoration: underline;">demo@farmcove.co.uk</td>
+                    <td><strong>Website:</strong></td>
+                    <td>N/A</td>
+                </tr>
+            </table>
+			</br>
+			</br>
+			</br>
+			<h2 style="margin-left: 7px;">Address Information</h2>
+			</br>
+            <table>
+                <tr>
+                    <td><strong>Address:</strong></td>
+                    <td id="address"></td>
+                </tr>
+                <tr>
+                    <td><strong>Billing Address:</strong></td>
+                    <td>Same as above</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <!-- Placeholder for Image instead of Map -->
+                        <img src="Map.png" alt="Map Placeholder" style="width: 100%; max-width: 200px; margin-top: 5px;">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Engagement Details Section -->
+    <div id="engagement-details" style="display:none;">
+        <button class="button1" onclick="goBackToTable()" style="margin-left: 25px; margin-bottom: 35px;">&lt; Back</button>
+        <h3 style="margin-left: 25px; margin-right: 25px;">Engagement Details for <span id="engagement-name"></span></h3>
+        <div class="table-container">
+            <h2 style="margin-left: 7px; margin-right: 25px; margin-bottom: 15px;">Engagement Information</h2>
+                        <table>
+                <tr>
+                    <td><strong>Role (Designation):</strong></td>
+                    <td id="engagement-role"></td>
+                    <td><strong>Engagement Tax Status:</strong></td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td><strong>Role (Character Name):</strong></td>
+                    <td>-</td>
+                    <td><strong>Travelling to UK:</strong></td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>Billing Credit Capacity:</strong></td>
+                    <td>-</td>
+                    <td><strong>Contract Effective Date:</strong></td>
+                    <td>18/06/2023</td>
+                </tr>
+                <tr>
+                    <td><strong>Department:</strong></td>
+                    <td>Electrical & Lighting</td>
+                    <td><strong>Working Day Length:</strong></td>
+                    <td>8 hours</td>
+                </tr>
+                <tr>
+                    <td><strong>Start Date:</strong></td>
+                    <td>19/06/2023</td>
+                    <td><strong>BFI Practitioner Type:</strong></td>
+                    <td>Crew</td>
+                </tr>
+                <tr>
+                    <td><strong>End Date:</strong></td>
+                    <td>28/07/2023</td>
+                    <td><strong>BFI Qualifying Production Crew:</strong></td>
+                    <td>-</td>
+                </tr>
+            </table>
+        </div>
+		
+		        <!-- Phase Participation Table -->
+		<h2 style="margin-left: 32px; margin-right: 25px; margin-bottom: 15px; margin-top 15px;">Phase Participation</h2>
+		<table style="margin-left: 25px; margin-right: 25px;">
+            <tr>
+                <td><strong>Phase Participation Name:</strong></td>
+                <td>PP-000140</td>
+            </tr>
+            <tr>
+                <td><strong>Production Phase:</strong></td>
+                <td>Shoot</td>
+            </tr>
+            <tr>
+                <td><strong>Start Date:</strong></td>
+                <td>19/06/2023</td>
+            </tr>
+            <tr>
+                <td><strong>End Date:</strong></td>
+                <td>28/07/2023</td>
+            </tr>
+        </table>
+		
+		
+    </div>
+
+    <!-- Popup for Invoices -->
+    <div id="invoice-popup" class="popup" style="display: none;">
+        <div class="popup-inner">
+            <button class="close-btn1" onclick="closeInvoicePopup()">X</button>
+            <h3>Invoices for <span id="popup-invoice-name"></span></h3>
+            <div class="info-section">
+                <h4>Invoices</h4>
+				</br>
+                <table class="invoice-table">
+                    <thead>
+                        <tr>
+                            <th>Reference</th>
+                            <th>Document Ref</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Payment Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TRX-00021</td>
+                            <td>INV-09002</td>
+                            <td>10/10/11</td>
+                            <td>12,000</td>
+                            <td>Production Approval Required</td>
+                            <td>12,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+				</br>
+				</br>
+                <h4>Personal Reimbursements</h4>
+				</br>
+                <table class="invoice-table">
+                    <thead>
+                        <tr>
+                            <th>Reference</th>
+                            <th>Document Ref</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Payment Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TRX-00020</td>
+                            <td>6709283E</td>
+                            <td>10/10/11</td>
+                            <td>34</td>
+                            <td>Approved</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup for Documents -->
+    <div id="document-popup" class="popup" style="display: none;">
+        <div class="popup-inner">
+            <button class="close-btn1" onclick="closeDocumentPopup()">X</button>
+            <h3>Documents for <span id="popup-crew-documents-name"></span></h3>
+            <table class="document-table">
+                <thead>
+                    <tr>
+                        <th>Document Type</th>
+                        <th>Status</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Signed Starter Form</td>
+                        <td>Submitted</td>
+                        <td><button class="button1" onclick="showImagePopup('starter-form.png')" style="width: 137px;">Link</button></td>
+                    </tr>
+                    <tr>
+                        <td>Proof to Work</td>
+                        <td>Submitted</td>
+                        <td><button class="button1" onclick="showImagePopup('proof-to-work.png')" style="width: 137px;">Link</button></td>
+                    </tr>
+                    <tr>
+                        <td>Passport Copy</td>
+                        <td>Submitted</td>
+                        <td><button class="button1" onclick="showImagePopup('passport.png')" style="width: 137px;">Link</button></td>
+                    </tr>
+                    <tr>
+                        <td>Signed Contract</td>
+                        <td>Submitted</td>
+                        <td><button class="button1" onclick="showImagePopup('signed-contract.png')" style="width: 137px;">Link</button></td>
+                    </tr>
+                    <tr>
+                        <td>Exit Passport Stamp</td>
+                        <td>Submitted</td>
+                        <td><button class="button1" onclick="showImagePopup('passport departure sign.png')" style="width: 137px;">Link</button></td>
+                    </tr>
+                    <tr>
+                        <td>Entry Passport Stamp</td>
+                        <td>Missing</td>
+                        <td><button class="button3" onclick="openRequestDocumentPopup()">Request Document</button></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+<!-- Popup Overlay for Request Document -->
+<div id="request-popup-overlay" class="popup-overlay">
+    <!-- Popup for Request Document -->
+
+        <div id="request-popup" class="popup-content">
+
+            <p class="message-text2">An email and a WhatsApp message have been sent to this entity, requesting them to provide the missing document(s).</p>
+            <button class="button1" onclick="closeRequestDocumentPopup()">Okay</button>
+        </div>
+
+</div>
+
+
+
+
+
+	<!-- Image Popup -->
+	<div id="image-popup" class="popup" style="display: none;">
+		<div class="popup-inner">
+			<button class="close-btn1" onclick="closeImagePopup()">X</button>
+			<h3 id="popup-document-name" style="text-align: center;">Document</h3> <!-- Header for Document Name -->
+			<img id="popup-image" src="" alt="Document Image" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;">
+		</div>
+	</div>
+
+
+
+<script>
+function openRequestDocumentPopup() {
+    console.log("openRequestDocumentPopup called"); // For debugging
+    document.getElementById('request-popup-overlay').style.display = 'flex';
+}
+
+function closeRequestDocumentPopup() {
+    console.log("closeRequestDocumentPopup called"); // For debugging
+    document.getElementById('request-popup-overlay').style.display = 'none';
+}
+</script>
+
+
+
+
+	<script>
+		function showImagePopup(imageSrc, documentName) {
+			document.getElementById('popup-image').src = imageSrc;
+			document.getElementById('popup-document-name').innerText = documentName; // Set the 
+			in the header
+			document.getElementById('image-popup').style.display = 'flex';
+		}
+
+		function closeImagePopup() {
+			document.getElementById('image-popup').style.display = 'none';
+		}
+	</script>
+
+    <script>
+        function openDocumentPopup(name) {
+            document.getElementById('popup-crew-documents-name').innerText = name;
+            document.getElementById('document-popup').style.display = 'flex';
+        }
+
+        function closeDocumentPopup() {
+            document.getElementById('document-popup').style.display = 'none';
+        }
+
+        function showImagePopup(imageSrc) {
+            document.getElementById('popup-image').src = imageSrc;
+            document.getElementById('image-popup').style.display = 'flex';
+        }
+
+        function closeImagePopup() {
+            document.getElementById('image-popup').style.display = 'none';
+        }
+
+        function requestDocument() {
+            document.getElementById('request-popup').style.display = 'flex';
+        }
+
+        function closeRequestPopup() {
+            document.getElementById('request-popup').style.display = 'none';
+        }
+
+        function showContactDetails(name, role, company, address) {
+            document.getElementById('crew-table').style.display = 'none';
+            document.getElementById('contact-details').style.display = 'block';
+            document.getElementById('contact-name').innerText = name;
+            document.getElementById('role').innerText = role;
+            document.getElementById('company-name').innerText = company;
+            document.getElementById('address').innerText = address;
+        }
+
+        function showEngagementDetails(name, role) {
+            document.getElementById('crew-table').style.display = 'none';
+            document.getElementById('engagement-details').style.display = 'block';
+            document.getElementById('engagement-name').innerText = name;
+            document.getElementById('engagement-role').innerText = role;
+        }
+
+        function openInvoicePopup(name) {
+            document.getElementById('popup-invoice-name').innerText = name;
+            document.getElementById('invoice-popup').style.display = 'flex';
+        }
+
+        function closeInvoicePopup() {
+            document.getElementById('invoice-popup').style.display = 'none';
+        }
+
+        function goBackToTable() {
+            document.getElementById('contact-details').style.display = 'none';
+            document.getElementById('engagement-details').style.display = 'none';
+            document.getElementById('crew-table').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

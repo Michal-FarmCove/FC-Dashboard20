@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconciliation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="Farm Cove Horizontal Logo.png" alt="Farm Cove Logo">
+        </div>
+        <div class="nav-icons">
+            <img src="magnifying glass.png" alt="Search" class="icon">
+            <img src="bell.png" alt="Notifications" class="icon">
+            <img src="avatar.png" alt="User" class="icon">
+        </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <div class="tabs">
+        <a href="index.html">Home</a>
+        <a href="approvals.html">Approvals</a>
+        <a href="tasks.html">BFI</a>
+        <a href="logging.html">Logging</a>
+        <a href="reconciliation.html">Reconciliation</a>
+        <a href="crew-management.html">Crew Management</a>
+        <a href="schedule-payment.html">Schedule Payment</a>
+        <a href="pay-upcoming.html">Pay</a>
+        <a href="compliance.html" class="active">Compliance</a>
+        <a href="reporting.html">Reports</a>
+        <div class="more">
+            More
+            <div class="more-dropdown"></div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="header">
+        <h1>Compliance Documents</h1>
+    </div>
+
+    <!-- Table for Reconciliation -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Approvals Process</td>
+                    <td>Generated</td>
+                    <td><button class="button1" onclick="openDetailsPopup()">View Details</button></td>
+                </tr>
+                <tr>
+                    <td>Compliance Process</td>
+                    <td>Sent</td>
+                    <td><button class="button1" onclick="openCompliancePopup()">View Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Centered Button for Reviewing New Documents -->
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="button1" onclick="openReviewPopup()">Review New Documents</button>
+    </div>
+
+    <!-- Review New Documents Popup -->
+    <div id="review-popup" class="popup" style="display: none;">
+        <div class="popup-inner" style="padding: 20px; max-width: 400px;">
+            <button class="close-btn1" onclick="closeReviewPopup()">X</button>
+            <h3 style="text-align: center;">Request New Document</h3>
+            <div style="margin-top: 15px;">
+                <label><input type="radio" name="document" value="approval" checked> Approval Structure</label><br>
+                <label><input type="radio" name="document" value="compliance"> Compliance Process</label><br>
+                <label><input type="radio" name="document" value="bfi"> BFI Points Requirements</label><br>
+                <label><input type="radio" name="document" value="visa"> Visa Briefing</label><br>
+                <label><input type="radio" name="document" value="vendor"> Vendor Selection</label><br>
+                <label><input type="radio" name="document" value="crew"> Crew Purchase Approvals</label><br>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="button1" onclick="requestDocument()">Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Document Requested Confirmation Popup -->
+    <div id="confirmation-popup" class="popup" style="display: none;">
+        <div class="popup-inner" style="padding: 20px; max-width: 250px;">
+            <p style="text-align: center; font-weight: bold; margin-bottom: 10px;">Document Requested</p>
+            <div style="text-align: center; margin-top: 15px;">
+                <button class="button1" onclick="closeConfirmationPopup()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Details Popup Window for Approvals Process -->
+    <div id="details-popup" class="popup" style="display: none;">
+        <div class="popup-inner">
+            <button class="close-btn1" onclick="closeDetailsPopup()">X</button>
+            <h3>View Details</h3>
+            <div class="popup-content" style="display: flex; gap: 20px;">
+                <div class="details-info" style="flex: 1;">
+                    <p><strong>Name:</strong> Approvals Process</p>
+                    <p><strong>Date Created:</strong> October 20, 2024</p>
+                    <p><strong>Status:</strong> Generated</p>
+                    <div style="margin-top: 15px;">
+                        <button class="button1" onclick="openRecipientPopup()">Manage Receipts and Send</button>
+                    </div>
+                </div>
+                <div class="details-image" style="flex: 1; text-align: right;">
+                    <img src="temporary1.png" alt="Movie Poster" style="width: 200px; height: auto; border: 1px solid #ccc;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manage Recipients Popup Window -->
+    <div id="recipient-popup" class="popup" style="display: none;">
+        <div class="popup-inner" style="padding: 20px; max-width: 800px;">
+            <button class="close-btn1" onclick="closeRecipientPopup()">X</button>
+            <h3 style="text-align: center;">Manage Recipients</h3>
+            <h4>Current Recipients</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name and Role</th>
+                        <th>Email Sent To</th>
+                        <th>Mobile Sent To</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Oliver Brown (Producer)</td>
+                        <td>producer@farmcove.co.uk</td>
+                        <td>64226949310</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4 style="margin-top: 20px;">Add Recipient</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th>Name and Role</th>
+                        <th>Type</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Johny Depp - Star</td>
+                        <td>Actor</td>
+                        <td>Production</td>
+                        <td>johny@gmail.com</td>
+                        <td>07563123267</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+                <button class="button1" onclick="closeRecipientPopup()">Close</button>
+                <button class="button1">Save</button>
+                <button class="button1">Submit for Approval</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Details Popup Window for Compliance Process -->
+    <div id="compliance-popup" class="popup" style="display: none;">
+        <div class="popup-inner">
+            <button class="close-btn1" onclick="closeCompliancePopup()">X</button>
+            <h3 style="text-align: center;">View Details</h3>
+            <div class="popup-content" style="display: flex; gap: 20px;">
+                <div class="details-info" style="flex: 1;">
+                    <p><strong>Name:</strong> Monsoon Melody Compliance Process</p>
+                    <p><strong>Date Created:</strong> 02/11/2024</p>
+                    <p><strong>Status:</strong> Sent</p>
+                    <h4>Recipients</h4>
+                    <div style="margin-top: 10px; border: 1px solid #ccc; padding: 10px;">
+                        <table style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Recipient Name</th>
+                                    <th>Department</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Project Document Request</td>
+                                    <td>Compliance</td>
+                                    <td>compliance@farmcove.co.uk</td>
+                                    <td><button class="button1" onclick="openEditableView()">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="details-image" style="flex: 1; text-align: right;">
+                    <img src="temporary1.png" alt="Movie Poster" style="width: 200px; height: auto; border: 1px solid #ccc;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function openReviewPopup() {
+        document.getElementById('review-popup').style.display = 'flex';
+    }
+    function closeReviewPopup() {
+        document.getElementById('review-popup').style.display = 'none';
+    }
+    function requestDocument() {
+        document.getElementById('review-popup').style.display = 'none';
+        document.getElementById('confirmation-popup').style.display = 'flex';
+    }
+    function closeConfirmationPopup() {
+        document.getElementById('confirmation-popup').style.display = 'none';
+    }
+    function openDetailsPopup() {
+        document.getElementById('details-popup').style.display = 'flex';
+    }
+    function closeDetailsPopup() {
+        document.getElementById('details-popup').style.display = 'none';
+    }
+    function openRecipientPopup() {
+        document.getElementById('recipient-popup').style.display = 'flex';
+    }
+    function closeRecipientPopup() {
+        document.getElementById('recipient-popup').style.display = 'none';
+    }
+    function openCompliancePopup() {
+        document.getElementById('compliance-popup').style.display = 'flex';
+    }
+    function closeCompliancePopup() {
+        document.getElementById('compliance-popup').style.display = 'none';
+    }
+    function openEditableView() {
+        alert("This is an editable view action.");
+    }
+    </script>
+
+</body>
+</html>

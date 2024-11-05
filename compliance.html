@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconciliation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="Farm Cove Horizontal Logo.png" alt="Farm Cove Logo">
+        </div>
+        <div class="nav-icons">
+            <img src="magnifying glass.png" alt="Search" class="icon">
+            <img src="bell.png" alt="Notifications" class="icon">
+            <img src="avatar.png" alt="User" class="icon">
+        </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <div class="tabs">
+        <a href="index.html">Home</a>
+        <a href="approvals.html">Approvals</a>
+        <a href="tasks.html">BFI</a>
+        <a href="logging.html">Logging</a>
+        <a href="reconciliation.html">Reconciliation</a>
+        <a href="crew-management.html">Crew Management</a>
+        <a href="schedule-payment.html">Schedule Payment</a>
+        <a href="pay-upcoming.html">Pay</a>
+        <a href="compliance.html" class="active">Compliance</a>
+        <a href="reporting.html">Reports</a>
+        <div class="more">
+            More
+            <div class="more-dropdown"></div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="header">
+        <h1>Compliance Documents</h1>
+    </div>
+
+    <!-- Table for Reconciliation -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Approval Structure</td>
+                    <td>Production Approval Required</td>
+                    <td><button class="button1" onclick="openDetailsPopup('Production Approval Required', 'missing.png')">View Details</button></td>
+                    <td><button class="button1" onclick="openRecipientPopup()">Manage Receipts and Send</button></td>
+                </tr>
+                <tr>
+                    <td>Approval Structure</td>
+                    <td>Generated</td>
+                    <td><button class="button1" onclick="openDetailsPopup('Generated', 'temporary1.png')">View Details</button></td>
+                    <td><button class="button1" onclick="openRecipientPopup()">Manage Receipts and Send</button></td>
+                </tr>
+                <tr>
+                    <td>Transaction Processing Overview</td>
+                    <td>Generated</td>
+                    <td><button class="button1" onclick="openDetailsPopup('Generated', 'temporary1.png')">View Details</button></td>
+                    <td><button class="button1" onclick="openRecipientPopup()">Manage Receipts and Send</button></td>
+                </tr>
+                <!-- New Entry with "Sent" status and no "Manage Receipts and Send" button -->
+                <tr>
+                    <td>Transaction Processing Overview</td>
+                    <td>Sent</td>
+                    <td><button class="button1" onclick="openSentDetailsPopup()">View Details</button></td>
+                    <td></td>
+                </tr>
+				                <!-- New Entry with "Sent" status and no "Manage Receipts and Send" button -->
+                <tr class="grey-row">
+                    <td>Transaction Processing Overview</td>
+                    <td>Sent</td>
+                    <td><button class="button2" onclick="openSentDetailsPopup()" disabled>View Details</button></td>
+                    <td></td>
+                </tr>
+				
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Centered Button for Reviewing New Documents -->
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="button1" onclick="openReviewPopup()">Review New Documents</button>
+    </div>
+
+    <!-- Review New Documents Popup -->
+    <div id="review-popup" class="popup" style="display: none;">
+        <div class="popup-inner" style="padding: 20px; max-width: 400px;">
+            <button class="close-btn1" onclick="closeReviewPopup()">X</button>
+            <h3 style="text-align: center;">Request New Document</h3>
+            <div style="margin-top: 15px;">
+                <label><input type="radio" name="document" value="approval" checked> Approval Structure</label><br>
+                <label><input type="radio" name="document" value="compliance"> Compliance Process</label><br>
+                <label><input type="radio" name="document" value="bfi"> BFI Points Requirements</label><br>
+                <label><input type="radio" name="document" value="visa"> Visa Briefing</label><br>
+                <label><input type="radio" name="document" value="vendor"> Vendor Selection</label><br>
+                <label><input type="radio" name="document" value="crew"> Crew Purchase Approvals</label><br>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="button1" onclick="requestDocument()">Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Document Requested Confirmation Popup -->
+    <div id="confirmation-popup" class="popup" style="display: none;">
+        <div class="popup-inner" style="padding: 20px; max-width: 250px;">
+            <p style="text-align: center; font-weight: bold; margin-bottom: 10px;">Document Requested</p>
+            <div style="text-align: center; margin-top: 15px;">
+                <button class="button1" onclick="closeConfirmationPopup()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Details Popup Window -->
+    <div id="details-popup" class="popup" style="display: none;">
+        <div class="popup-inner">
+            <button class="close-btn1" onclick="closeDetailsPopup()">X</button>
+            <h3>View Details</h3>
+            <div class="popup-content" style="display: flex; gap: 20px;">
+                <div class="details-info" style="flex: 1;">
+                    <p><strong>Name:</strong> Approvals Process</p>
+                    <p><strong>Date Created:</strong> October 20, 2024</p>
+                    <p><strong>Status:</strong> <span id="details-status">Generated</span></p>
+                </div>
+                <div class="details-image" id="details-image" style="flex: 1; text-align: right;">
+                    <img id="details-image-src" src="temporary1.png" alt="Movie Poster" style="width: 200px; height: auto; border: 1px solid #ccc;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup for "Sent" Entry View Details -->
+    <div id="sent-details-popup" class="popup" style="display: none;">
+        <div class="popup-inner">
+            <button class="close-btn1" onclick="closeSentDetailsPopup()">X</button>
+            <h3>Transaction Processing Overview</h3>
+            <div class="popup-content" style="display: flex; gap: 20px;">
+                <div class="details-info" style="flex: 1;">
+                    <p><strong>Name:</strong>Transaction Processing Overview</p>
+                    <p><strong>Created Date:</strong> 04/11/2024</p>
+                    <p><strong>Status:</strong> Sent</p>
+					</br>
+                    <h4>Recipients</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name and Role</th>
+                                <th>Type</th>
+                                <th>Department</th>
+                                <th>Email Sent To</th>
+                                <th>Mobile Sent To</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mark Smith - 3D Set Designer</td>
+                                <td>Crew Member</td>
+                                <td>Design</td>
+                                <td>smith@farmcove.co.uk</td>
+                                <td>-</td>
+                                <td>Sent</td>
+                            </tr>
+                            <tr>
+                                <td>Wilson Croft - Construction Manager</td>
+                                <td>Crew Member</td>
+                                <td>Design</td>
+                                <td>wilson@farmcove.co.uk</td>
+                                <td>-</td>
+                                <td>Sent</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+<div class="details-image" style="flex: 1; display: flex; align-items: center; justify-content: flex-end;">
+    <img src="temporary1.png" alt="PDF Preview" style="width: 150px; height: auto; border: 1px solid #ccc;">
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Manage Recipients Popup Window -->
+    <div id="recipient-popup" class="popup" style="display: none;">
+        <div class="popup-inner" style="padding: 20px; max-width: 800px;">
+            <button class="close-btn1" onclick="closeRecipientPopup()">X</button>
+            <h3 style="text-align: center;">Manage Recipients</h3>
+            <h4>Current Recipients</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name and Role</th>
+                        <th>Email Sent To</th>
+                        <th>Mobile Sent To</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Oliver Brown (Producer)</td>
+                        <td>producer@farmcove.co.uk</td>
+                        <td>64226949310</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4 style="margin-top: 20px;">Add Recipient</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th>Name and Role</th>
+                        <th>Type</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Johnny Depp - Star</td>
+                        <td>Actor</td>
+                        <td>Production</td>
+                        <td>johnny@gmail.com</td>
+                        <td>07563123267</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+                <button class="button1" onclick="closeRecipientPopup()">Close</button>
+                <button class="button1" onclick="saveAndClosePopup()">Save</button>
+                <button class="button1" onclick="submitForApproval()">Submit for Approval</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Sent Confirmation Popup -->
+    <div id="request-sent-popup" class="popup" style="display: none;">
+        <div class="popup-inner" style="padding: 20px; max-width: 300px;">
+            <p style="text-align: center; font-weight: bold; margin-bottom: 10px;">Request has been sent</p>
+            <div style="text-align: center; margin-top: 15px;">
+                <button class="button1" onclick="closeRequestSentPopup()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function openReviewPopup() {
+        document.getElementById('review-popup').style.display = 'flex';
+    }
+    function closeReviewPopup() {
+        document.getElementById('review-popup').style.display = 'none';
+    }
+    function requestDocument() {
+        document.getElementById('review-popup').style.display = 'none';
+        document.getElementById('confirmation-popup').style.display = 'flex';
+    }
+    function closeConfirmationPopup() {
+        document.getElementById('confirmation-popup').style.display = 'none';
+    }
+    function openDetailsPopup(status, image) {
+        document.getElementById('details-popup').style.display = 'flex';
+        document.getElementById('details-status').textContent = status;
+        document.getElementById('details-image-src').src = image;
+    }
+    function closeDetailsPopup() {
+        document.getElementById('details-popup').style.display = 'none';
+    }
+    function openRecipientPopup() {
+        document.getElementById('recipient-popup').style.display = 'flex';
+    }
+    function closeRecipientPopup() {
+        document.getElementById('recipient-popup').style.display = 'none';
+    }
+    function openSentDetailsPopup() {
+        document.getElementById('sent-details-popup').style.display = 'flex';
+    }
+    function closeSentDetailsPopup() {
+        document.getElementById('sent-details-popup').style.display = 'none';
+    }
+    function saveAndClosePopup() {
+        closeRecipientPopup();
+    }
+    function submitForApproval() {
+        closeRecipientPopup();
+        document.getElementById('request-sent-popup').style.display = 'flex';
+    }
+    function closeRequestSentPopup() {
+        document.getElementById('request-sent-popup').style.display = 'none';
+    }
+    </script>
+
+</body>
+</html>

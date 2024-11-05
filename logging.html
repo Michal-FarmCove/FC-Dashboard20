@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production Review</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="More-Tab.js"></script>
+    <script src="More-Tab2.js"></script>
+    <script src="popup-window3.js"></script>
+    <script src="logging-page-script.js"></script>
+    <style>
+        /* Additional styles for spacing adjustments */
+        h1 {
+            margin-bottom: 0px; /* Reduce the space below the header */
+        }
+        .subheader {
+            text-align: center;
+			margin-bottom: 10px;
+			margin-top: 0px;
+        }
+		
+				input[type="text"] {
+			padding-left: 10px; /* Adds space to the left (about 2 space bars worth) */
+			width: 180px; /* Adjusts the width to make the box slightly bigger */
+			height: 30px; /* Adjusts the height to make the box slightly bigger */
+			background-color: #d3d3d3; /* Light grey background */
+			border: 1px solid #ccc; /* Optional: Adds a light border */
+			border-radius: 4px; /* Optional: Adds rounded corners */
+		}
+
+
+		.switch + span {
+			padding-left: 10px; /* Adds space to the left of "Only Today?" */
+			
+
+
+		}
+    </style>
+
+	
+</head>
+<body>
+
+  <!-- Navigation -->
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="Farm Cove Horizontal Logo.png" alt="Farm Cove Logo"> <!-- Placeholder for the logo -->
+        </div>
+        <div class="nav-icons">
+            <img src="magnifying glass.png" alt="Search" class="icon">
+            <img src="bell.png" alt="Notifications" class="icon">
+            <img src="avatar.png" alt="User" class="icon">
+        </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <div class="tabs">
+        <a href="index.html">Home</a>
+        <a href="approvals.html">Approvals</a>
+        <a href="tasks.html">BFI</a>
+
+        <a href="logging.html" class="active">Logging</a>
+        <a href="reconciliation.html">Reconciliation</a>
+        <a href="crew-management.html">Crew Management</a>
+
+        <a href="schedule-payment.html">Schedule Payment</a>
+        <a href="pay-upcoming.html">Pay</a>
+				<a href="compliance.html">Compliance</a>
+        <a href="reporting.html">Reports</a>
+
+        <!-- More Button -->
+        <div class="more">
+            More
+            <div class="more-dropdown"></div>
+        </div>
+    </div>
+</br>
+</br>
+<hr style="border: none; height: 1px; background-color: #717171; margin-left: 25px; margin-right: 25px;">
+
+<div class="filter-container">
+    <div>
+        <label for="production-phase" class="filter-label">Production Phase:</label>
+        <input type="text" id="production-phase" value="Post-production" readonly>
+    </div>
+    <div>
+        <label for="day" class="filter-label">Day:</label>
+        <input type="text" id="day" value="14/08/24 - 19/08/24" readonly>
+    </div>
+	<div>
+		<label class="filter-label">Only Today:</label>
+		<label class="switch">
+			<input type="checkbox" onclick="toggleFilterSwitch()">
+			<span class="slider"></span>
+		</label>
+
+	</div>
+</div>
+
+</br>
+</br>
+<hr style="border: none; height: 1px; background-color: #717171; margin-left: 25px; margin-right: 25px;">
+
+
+
+
+    <!-- First Table: Production Days -->
+    <div class="table-container" id="table1-container">
+        <div class="header">
+
+		<h1 style="margin-bottom: 0px;">Choose the Production Day to Review</h1>
+        </div>
+        <p class="subheader">6 of 139 items • 0 items selected</p>
+        <br>
+		
+						</br>
+		        <button class="button1" id="nextBtn" style="align-left;" onclick="showTable2()" disabled>Next</button>
+				</br>
+				</br>
+		
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Day Number</th>
+                    <th>Date</th>
+                    <th>Production Phase</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox" onclick="selectOnlyOne(this, 'PD-00175', '14 Aug 2024', 1)"></td>
+                    <td>PD-00175</td>
+                    <td>1</td>
+                    <td>14 Aug 2024</td>
+                    <td>Shooting</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox" onclick="selectOnlyOne(this, 'PD-00176', '15 Aug 2024', 2)"></td>
+                    <td>PD-00176</td>
+                    <td>2</td>
+                    <td>15 Aug 2024</td>
+                    <td>Shooting</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox" onclick="selectOnlyOne(this, 'PD-00177', '16 Aug 2024', 3)"></td>
+                    <td>PD-00177</td>
+                    <td>3</td>
+                    <td>16 Aug 2024</td>
+                    <td>Shooting</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox" onclick="selectOnlyOne(this, 'PD-00178', '17 Aug 2024', 4)"></td>
+                    <td>PD-00178</td>
+                    <td>4</td>
+                    <td>17 Aug 2024</td>
+                    <td>Shooting</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox" onclick="selectOnlyOne(this, 'PD-00179', '18 Aug 2024', 5)"></td>
+                    <td>PD-00179</td>
+                    <td>5</td>
+                    <td>18 Aug 2024</td>
+                    <td>Shooting</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox" onclick="selectOnlyOne(this, 'PD-00180', '19 Aug 2024', 6)"></td>
+                    <td>PD-00180</td>
+                    <td>6</td>
+                    <td>19 Aug 2024</td>
+                    <td>Shooting</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+		<br>
+		<br>
+
+    </div>
+
+    <!-- Second Table: Logging -->
+    <div class="table-container" id="table2-container" style="display: none;">
+        <div class="header">
+            <h1 id="logging-header"></h1>
+        </div>
+		
+		
+        <button class="button1" id="prevBtn" onclick="showTable1()">&lt; Back</button>
+				        </br>
+								        </br>
+		
+		<h1 style="font-size: larger; font-weight: bold; color: #32B8CD;">Crew Logs</h1>
+		</br>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Person</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Base Rate (p/h)</th>
+                    <th>Hours Worked</th>
+                    <th>Overtime Hours</th>
+					<th>Overtime Rate (p/h)</th>
+                    <th>Overtime Cost</th>
+					<th>Total Cost</th>
+                    <th>Status</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jack Smith - Gaffer</td>
+                    <td>08:00</td>
+                    <td>16:00</td>
+                    <td>£12.00</td>
+                    <td>8</td>
+                    <td>0</td>
+					<td>£15.00</td>
+                    <td class="borders">£0.00</td>
+					<td class="borders">£96.00</td>
+                    <td>Approved</td>
+                    <td><button class="button1" onclick="showContactDetails('John Smith', 'Gaffer', 'Company X', '42 Bramble Lane, Westbridge, London')">Details</button></td>
+                </tr>
+                <tr>
+                    <td>Mike Johnson - Grip</td>
+                    <td>08:00</td>
+                    <td>17:30</td>
+                    <td>£14.00</td>
+                    <td>9.5</td>
+                    <td>1.5</td>
+					<td>£19.00</td>
+                    <td class="borders">£28.50</td>
+					<td class="borders">£161.50</td>
+                    <td>Approved</td>
+                    <td><button class="button2" disabled>Details</button></td>
+                </tr>
+                <tr>
+                    <td>Sarah Lee - Camera</td>
+                    <td>07:30</td>
+                    <td>16:30</td>
+                    <td>£13.00</td>
+                    <td>9</td>
+                    <td>1</td>
+					<td>£16.00</td>
+                    <td class="borders">£16.00</td>
+					<td class="borders">£133.00</td>
+                    <td>Approved</td>
+                    <td><button class="button2" disabled>Details</button></td>
+                </tr>
+                <tr>
+                    <td>Emma Roberts - Sound</td>
+                    <td>09:00</td>
+                    <td>18:15</td>
+                    <td>£14.00</td>
+                    <td>9.25</td>
+                    <td>1.25</td>
+					<td>£14.00</td>
+                    <td class="borders">£17.50</td>
+					<td class="borders">£129.50</td>
+                    <td>Pending</td>
+                    <td><button class="button2" disabled>Details</button></td>
+                </tr>
+                <tr>
+                    <td>Rachel Adams - Art</td>
+                    <td>08:15</td>
+                    <td>16:45</td>
+                    <td>£14.00</td>
+                    <td>8.5</td>
+                    <td>0.5</td>
+                    <td>£12.00</td>
+                    <td class="borders">£6.00</td>
+                    <td class="borders">£125.00</td>
+                    <td>Pending</td>
+                    <td><button class="button2" disabled>Details</button></td>
+                </tr>
+                <tr class="header2">
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><th>
+                    <th></th>
+                    <th>Total:</th>
+					<th class="borders">£68.00</th>
+                    <th class="borders">£645.00</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tbody>
+        </table>
+		</br>
+		</br>
+		<h1 style="font-size: larger; font-weight: bold; color: #32B8CD;">Drivers Logs</h1>
+		</br>
+		<table>
+            <thead>
+                <tr>
+                    <th>Person</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Base Rate (p/h)</th>
+                    <th>Hours Worked</th>
+                    <th>Overtime Hours</th>
+					<th>Overtime Rate (p/h)</th>
+                    <th>Overtime Cost</th>
+					<th>Total</th>
+                    <th>Status</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+			    <tr>
+                    <td>Mike - Luton Van Driver</td>
+                    <td>08:00</td>
+                    <td>16:00</td>
+                    <td>£15.00</td>
+                    <td>11</td>
+                    <td>0</td>
+					<td>£15.00</td>
+                    <td class="borders">£0.00</td>
+                    <td class="borders">£165.00</td>
+                    <td>Approved</td>
+                    <td><button class="button1" onclick="showDriverDetails('Mike McCalls', 'Luton Van Driver', 'Company X', '42 Bramble Lane, Westbridge, London')">Details</button></td>
+                </tr>
+			    <tr>
+                    <td>Mark - Luton Van Driver</td>
+                    <td>08:00</td>
+                    <td>18:00</td>
+                    <td>£12.00</td>
+                    <td>8</td>
+                    <td>2</td>
+					<td>£15.00</td>
+                    <td class="borders">£30.00</td>
+                    <td class="borders">£126.00</td>
+                    <td>Approved</td>
+                    <td><button class="button2" disabled>Details</button></td>
+                </tr>
+                <tr>
+                    <td>Daniel - Luton Van Driver</td>
+                    <td>09:00</td>
+                    <td>20:00</td>
+                    <td>£15.00</td>
+                    <td>10</td>
+                    <td>3</td>
+					<td>£15.00</td>
+                    <td class="borders">£45.00</td>
+                    <td class="borders">£195.00</td>
+                    <td>Approved</td>
+                    <td><button class="button2" disabled>Details</button></td>
+                </tr>
+                <tr class="header2">
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><th>
+                    <th></th>
+                    <th>Total:</th>
+					<th class="borders">£75.00</th>
+                    <th class="borders">£486.00</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+   <!-- Contact Details Section -->
+    <div id="contact-details" style="display:none;">
+	</br>
+	</br>
+	<button class="button1" onclick="goBackToTable()" style="margin-bottom: 35px; margin-left: 25px;">&lt; Back</button>
+
+		</br>
+	<h3 style="margin-left: 25px; margin-right: 25px;">Contact Details for <span id="contact-name"></span></h3>
+
+<!-- Contact details layout -->
+<div class="table-container">
+	</br>
+	</br>
+    <h2 style="margin-left: 7px;">Crew Details</h2>
+	<div class="line-below2"></div>
+    <br>
+    <table>
+        <tr>
+            <td><strong>Name:</strong></td>
+            <td>Jack Smith</td>
+        </tr>
+        <tr>
+            <td><strong>Role:</strong></td>
+            <td>Gaffer</td>
+        </tr>
+        <tr>
+            <td><strong>Base Rate (p/h):</strong></td>
+            <td>£12.00</td>
+        </tr>
+        <tr>
+            <td><strong>Overtime Rate (p/h):</strong></td>
+            <td>£15.00</td>
+        </tr>
+        <tr>
+            <td><strong>Hours Worked:</strong></td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td><strong>Overtime Cost:</strong></td>
+            <td>£0.00</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <h2 style="margin-left: 7px;">Location Information</h2>
+	<div class="line-below2"></div>
+    <br>
+	<br>
+	<div style="padding-left: 10px;">
+		<!-- Start Location Section -->
+		<div style="display: flex; align-items: flex-start; margin-bottom: 20px;">
+			<!-- Start Location Text on the Left -->
+			<div style="flex-direction: column; align-items: flex-start; width: 250px;">
+				<strong>Start Location:</strong>
+				<p>Heathrow Hotel, Bath Road, Hounslow, TW6 2AQ</p>
+			</div>
+			<!-- Map Image on the Right -->
+			<img src="Map.png" alt="Map Placeholder" style="width: 200px; margin-left: 310px;"> <!-- Consistent margin -->
+		</div>
+		
+		<!-- End Location Section -->
+		<div style="display: flex; align-items: flex-start;">
+			<!-- End Location Text on the Left -->
+			<div style="flex-direction: column; align-items: flex-start; width: 250px;">
+				<strong>End Location:</strong>
+				<p>Big Ben, Westminster, London, SW1A 0AA</p>
+			</div>
+			<!-- Map Image on the Right -->
+			<img src="Map.png" alt="Map Placeholder" style="width: 200px; margin-left: 310px;"> <!-- Consistent margin -->
+		</div>
+		
+		<!-- Horizontal Line Below -->
+		<div class="line-below2" style="margin-top: 20px;"></div>
+	</div>
+
+</div>
+</div>
+
+
+
+
+
+
+<!-- Driver Details Section -->
+
+<div id="driver-details" style="display:none;">
+    <br><br>
+    <button class="button1" onclick="goBackToDriverTable()" style="margin-bottom: 35px; margin-left: 25px;">&lt; Back</button>
+    <br>
+    <h3 style="margin-left: 25px; margin-right: 25px;">Driver Details for <span id="driver-contact-name">Mike McCalls</span></h3>
+	
+    <!-- Driver details layout -->
+<div class="table-container">
+	</br>
+	</br>
+    <h2 style="margin-left: 7px;">Crew Details</h2>
+	<div class="line-below2"></div>
+    <br>
+    <table>
+        <tr>
+            <td><strong>Name:</strong></td>
+            <td id="driver-contact-name">Mike McCalls</td>
+        </tr>
+        <tr>
+            <td><strong>Role:</strong></td>
+            <td id="driver-role">Luton Van Driver</td>
+        </tr>
+        <tr>
+            <td><strong>Base Rate (p/h):</strong></td>
+            <td>£15.00</td>
+        </tr>
+        <tr>
+            <td><strong>Overtime Rate (p/h):</strong></td>
+            <td>£15.00</td>
+        </tr>
+        <tr>
+            <td><strong>Hours Worked:</strong></td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td><strong>Overtime Cost:</strong></td>
+            <td>£0.00</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <h2 style="margin-left: 7px;">Location Information</h2>
+	<div class="line-below2"></div>
+    <br>
+	<br>
+	<div style="padding-left: 10px;">
+		<!-- Start Location Section -->
+		<div style="display: flex; align-items: flex-start; margin-bottom: 20px;">
+			<!-- Start Location Text on the Left -->
+			<div style="flex-direction: column; align-items: flex-start; width: 250px;">
+				<strong>Start Location:</strong>
+				<p>Heathrow Hotel, Bath Road, Hounslow, TW6 2AQ</p>
+			</div>
+			<!-- Map Image on the Right -->
+			<img src="Map.png" alt="Map Placeholder" style="width: 200px; margin-left: 258px;"> <!-- Consistent margin -->
+		</div>
+		
+		<!-- End Location Section -->
+		<div style="display: flex; align-items: flex-start;">
+			<!-- End Location Text on the Left -->
+			<div style="flex-direction: column; align-items: flex-start; width: 250px;">
+				<strong>End Location:</strong>
+				<p>Heathrow Hotel, Bath Road, Hounslow, TW6 2AQ</p>
+			</div>
+			<!-- Map Image on the Right -->
+			<img src="Map.png" alt="Map Placeholder" style="width: 200px; margin-left: 258px;"> <!-- Consistent margin -->
+		</div>
+
+
+
+	</div>
+    <h2 style="margin-left: 7px;">Vehicle Details</h2>
+	<div class="line-below2"></div>
+    <br>
+	<br>
+	
+	
+			<table>
+			<tr>
+				<td><strong>Total Miles Driven:</strong></td>
+				<td class="left-margin">230 Miles</td>
+			</tr>
+			<tr>
+				<td><strong>Vehicle Type:</strong></td>
+				<td class="left-margin">Mercedes-Benz Sprinter Luton</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+	<div style="padding-left: 10px;">
+		<div style="display: flex; align-items: flex-start; margin-bottom: 20px;">
+			<!-- Start Location Text on the Left -->
+			<div style="flex-direction: column; align-items: flex-start; width: 250px;">
+				<strong>Registration Number:</strong>
+				<p>BX23 YHL</p>
+			</div>
+			<!-- Map Image on the Right -->
+			<img src="registration.png" alt="Map Placeholder" style="width: 200px; margin-left: 258px;"> <!-- Consistent margin -->
+		</div>
+		
+
+		<div style="display: flex; align-items: flex-start;">
+			<!-- End Location Text on the Left -->
+			<div style="flex-direction: column; align-items: flex-start; width: 250px;">
+				<strong>Start Odometer:</strong>
+				<p>12,500 Miles</p>
+			</div>
+			<!-- Map Image on the Right -->
+			<img  src="start-odo.png" alt="Map Placeholder" style="width: 200px; margin-left: 258px;"> <!-- Consistent margin -->
+		</div>
+		
+		<div style="display: flex; align-items: flex-start;">
+			<!-- End Location Text on the Left -->
+			<div style="flex-direction: column; align-items: flex-start; width: 250px;">
+				<strong>End Odometer:</strong>
+				<p>12,730 Miles</p>
+			</div>
+			<!-- Map Image on the Right -->
+			<img src="end-odo.png" alt="Map Placeholder" style="width: 200px; margin-left: 258px;"> <!-- Consistent margin -->
+		</div>
+		
+		</br>
+	</div>
+	
+
+
+	</div>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>
